@@ -105,123 +105,214 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Attendance(
+    AttendanceID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    AttendanceDate DATE,
+    Status TEXT CHECK(Status IN ('Present', 'Absent','Leave')),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    );
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1227" height="327" alt="image" src="https://github.com/user-attachments/assets/f343e522-2223-47d6-b88f-207683f165eb" />
+
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Insert the below data into the Customers table, allowing the City and ZipCode columns to take their default values.
+````sql
+CustomerID  Name          Address
+----------  ------------  ----------
+304         Peter Parker  Spider St      
 
+Note: The City and ZipCode columns will use their default values.
+````
 ```sql
--- Paste your SQL code below for Question 2
+INSERT INTO Customers(CustomerID, Name, Address) VALUES (304,'Peter Parker','Spider St');
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1193" height="311" alt="image" src="https://github.com/user-attachments/assets/3ccad484-571f-4d1f-8eea-66b6f7bf267d" />
+
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE contacts(
+    contact_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT NOT NULL CHECK(LENGTH(phone)>=10)
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1189" height="311" alt="image" src="https://github.com/user-attachments/assets/11f7092d-8a40-4185-8b5d-7b925cc24b33" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE ProjectAssignments(
+    AssignmentID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    ProjectID INTEGER,
+    AssignmentDate DATE NOT NULL,
+    FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID),
+    FOREIGN KEY(ProjectID) REFERENCES Projects(ProjectID)
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1181" height="245" alt="image" src="https://github.com/user-attachments/assets/f832a0ff-a7c5-4878-ab5b-b57eb1122aa7" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to Rename the "city" column to "location" in the "customer" table.
 
+Sample table: customer
+````sql
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+````
 ```sql
--- Paste your SQL code below for Question 5
+ALTER TABLE customer
+RENAME COLUMN city TO location;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1180" height="313" alt="image" src="https://github.com/user-attachments/assets/01f94054-39b4-459a-9d00-eaae7591fbde" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named Members with the following columns:
+
+MemberID as INTEGER
+MemberName as TEXT
+JoinDate as DATE
 
 ```sql
--- Paste your SQL code below for Question 6
+CREATE TABLE Members(
+    MemberID INTEGER,
+    MemberName TEXT,
+    JoinDate DATE
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1171" height="360" alt="image" src="https://github.com/user-attachments/assets/d6bd5d01-33b9-4ef2-a95d-c40e7a38056b" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Insert all customers from Old_customers into Customers
+
+Table attributes are CustomerID, Name, Address, Email
 
 ```sql
--- Paste your SQL code below for Question 7
+INSERT INTO Customers
+SELECT * FROM Old_customers;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1173" height="242" alt="image" src="https://github.com/user-attachments/assets/30960709-6aed-4929-acc2-034ed5b746ae" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
 
 ```sql
--- Paste your SQL code below for Question 8
+CREATE TABLE Bonuses(
+    BonusID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    BonusAmount REAL CHECK(BonusAmount>0),
+    BonusDate DATE,
+    Reason TEXT NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1176" height="233" alt="image" src="https://github.com/user-attachments/assets/72b847f8-4e0e-4b53-8394-4fa135bc135d" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert the below data into the Employee table, allowing the Department and Salary columns to take their default values.
+````sql
+EmployeeID  Name         Position
+----------  -----------  ----------
+4           Emily White  Analyst
+````
+Note: The Department and Salary columns will use their default values.  
 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO Employee(EmployeeID,Name,Position) VALUES (4,'Emily White','Analyst');
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1091" height="294" alt="image" src="https://github.com/user-attachments/assets/27a98871-8b39-4be6-b7ae-8fa5aaed946d" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL query to add a new column MobileNumber of type NUMBER and a new column Address of type VARCHAR(100) to the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 10
+ALTER TABLE Student_details
+ADD MobileNumber NUMBER;
+
+ALTER TABLE Student_details
+ADD Address VARCHAR(100);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1175" height="287" alt="image" src="https://github.com/user-attachments/assets/c30fd268-95a5-417f-b64c-ee78ecbaa7d3" />
+
 
 
 ## RESULT
